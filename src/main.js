@@ -4,11 +4,13 @@ import Home from "@/components/Home.vue";
 import {createRouter, createWebHashHistory} from "vue-router";
 import Rules from "@/components/Rules.vue";
 import Tracks from "@/components/Tracks.vue";
+import Rewards from "@/components/Rewards.vue";
 
 const routes = [
   {path: '/', component: Home},
   {path: '/zasady', component: Rules},
-  {path: '/tory', component: Tracks}
+  {path: '/tory', component: Tracks},
+  {path: '/nagrody', component: Rewards},
 
 ]
 

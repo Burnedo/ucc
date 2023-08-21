@@ -6,6 +6,7 @@
     <div class="nav">
       <router-link to="/zasady">Zasady</router-link>
       <router-link to="/tory">Pula torów</router-link>
+      <router-link to="/nagrody">Nagrody 🏆</router-link>
     </div>
     <div class="cta">
       <a href="https://forms.gle/8SPyQeJX2J9ZgGjL8" class="register btn" title="Zapisy poprzez Google Forms">Zapisz się</a>
@@ -48,6 +49,7 @@ export default {
   padding: 0 20px;
   display: block;
   border-right: 1px solid #e0aa3e;
+  line-height: 20px;
 }
 
 .nav a:first-child {
