@@ -6,7 +6,15 @@
       </p>
       <p>Rozegrane zostanie 7 rund. W każdej rundzie zostanie wylosowany inny samochód używany, jeden tor z puli oraz pogoda.</p>
       <p>Start zawodów 03.10.2023</p>
-      <p>Zapisy do 15.09.2023 - <a href="https://forms.gle/8SPyQeJX2J9ZgGjL8">Zapisz się przez Google Forms</a></p>
+      <p>Zapisy do 15.09.2023</p>
+      <ul>
+        <li>
+          <a href="https://forms.gle/8SPyQeJX2J9ZgGjL8">Zapisz się przez Google Forms</a>
+        </li>
+        <li>
+          lub <a href="https://discord.gg/a9WHznqtEf">dołącz do discord UCC</a>
+        </li>
+      </ul>
     </div>
     <div class="video">
       <iframe class="trailer" src="https://www.youtube.com/embed/5_0S4yr9EyU?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -36,5 +44,8 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
+}
+li {
+  line-height:30px;
 }
 </style>
