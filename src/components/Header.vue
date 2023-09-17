@@ -9,9 +9,6 @@
       <router-link to="/nagrody">Nagrody 🏆</router-link>
     </div>
     <div class="cta">
-      <div class="register">
-        <a href="https://forms.gle/8SPyQeJX2J9ZgGjL8" class="register btn" title="Zapisy poprzez Google Forms">Zapisz się</a>
-      </div>
       <div class="discord">
         <a href="https://discord.gg/a9WHznqtEf" title="Dołącz do serwera UCC">
           <img src="./../assets/discord-mark-white.png" alt="Discord UCC">
