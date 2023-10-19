@@ -8,6 +8,7 @@
       <router-link to="/zasady">Zasady</router-link>
       <router-link to="/tory">Pula torów</router-link>
       <router-link to="/nagrody">Nagrody 🏆</router-link>
+      <router-link to="/pogoda">Pogoda</router-link>
     </div>
     <div class="cta">
       <div class="discord">

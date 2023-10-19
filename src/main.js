@@ -6,13 +6,15 @@ import Rules from "@/components/Rules.vue";
 import Tracks from "@/components/Tracks.vue";
 import Rewards from "@/components/Rewards.vue";
 import Standings from "@/components/Standings.vue";
+import Weather from "@/components/Weather.vue";
 
 const routes = [
   {path: '/', component: Home},
   {path: '/zasady', component: Rules},
   {path: '/tory', component: Tracks},
   {path: '/nagrody', component: Rewards},
-  {path: '/klasyfikacja', component: Standings}
+  {path: '/klasyfikacja', component: Standings},
+  {path: '/pogoda', component: Weather}
 
 ]
 
