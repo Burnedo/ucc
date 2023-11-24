@@ -4,7 +4,7 @@
       <table class="standings" cellpadding="0" cellspacing="3"  v-if="standings.length > 0">
         <thead>
         <tr>
-          <th>miejsce</th><th>zawodnik</th><th>wyścig 1</th><th>wyścig 1</th><th>wyścig 2</th><th>suma</th>
+          <th>miejsce</th><th>zawodnik</th><th>wyścig 1</th><th>wyścig 2</th><th>wyścig 3</th><th>suma</th>
         </tr>
         </thead>
         <tbody>
