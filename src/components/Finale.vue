@@ -82,12 +82,12 @@ export default {
 .standings th {
   font-family: 'Titillium Web', sans-serif;
   font-style: italic;
-  font-weight: 300;
+  font-weight: 600;
   text-align: center;
   padding: 10px;
   background: none;
   color: black;
-  font-size: 1.2em;
+  font-size: 1.3em;
 }
 
 .standings td {
@@ -97,7 +97,7 @@ export default {
   text-shadow: #000 3px 2px 2px;
   font-size: 1.3em;
   padding: 5px 10px;
-  background-color: rgba(0,0,0, 0.4);
+  background-color: rgba(0,0,0, 0.6);
   transition: all .3s ease-in-out;
 }
 
@@ -112,7 +112,7 @@ export default {
 }
 
 .standings tr:nth-child(even) td {
-  background-color: rgba(0,0,0, 0.5);
+  background-color: rgba(0,0,0, 0.7);
 }
 
 .loader-wrapper {
