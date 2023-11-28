@@ -8,6 +8,7 @@ import Rewards from "@/components/Rewards.vue";
 import Standings from "@/components/Standings.vue";
 import Weather from "@/components/Weather.vue";
 import Finale from "@/components/Finale.vue";
+import FinaleStandings from "@/components/FinaleStandings.vue";
 
 
 const routes = [
@@ -17,8 +18,8 @@ const routes = [
   {path: '/nagrody', component: Rewards},
   {path: '/klasyfikacja', component: Standings},
   {path: '/pogoda', component: Weather},
-  {path: '/final', component: Finale}
-
+  {path: '/final', component: Finale},
+  {path: '/wyniki', component: FinaleStandings}
 ]
 
 const router = createRouter({

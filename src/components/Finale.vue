@@ -52,7 +52,6 @@ export default {
         total
       }
     })
-    console.log(this.standings)
   }
 }
 </script>
