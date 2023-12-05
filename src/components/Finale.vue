@@ -64,7 +64,7 @@ export default {
   width: 100vw;
   height: 100vh;
   background-color: white;
-  background-image: url('~@/assets/finale-bg-beta.jpg');
+  background-image: url('~@/assets/finale-bg.jpg');
   background-position: center top;
   background-repeat: no-repeat;
   background-size: cover;
