@@ -4,11 +4,13 @@
       <img class="main-logo" alt="Used Car Cup" src="./../assets/ucc-logo.png">
     </router-link>
     <div class="nav">
-      <router-link to="/klasyfikacja">Klasyfikacja</router-link>
-      <router-link to="/zasady">Zasady</router-link>
-      <router-link to="/tory">Pula torów</router-link>
-      <router-link to="/nagrody">Nagrody 🏆</router-link>
+<!--      <router-link to="/klasyfikacja">Klasyfikacja</router-link>-->
+<!--      <router-link to="/zasady">Zasady</router-link>-->
+<!--      <router-link to="/tory">Pula torów</router-link>-->
+<!--      <router-link to="/nagrody">Nagrody 🏆</router-link>-->
+      <router-link to="/kombo">Kombo</router-link>
       <router-link to="/pogoda">Pogoda</router-link>
+      <router-link to="/sezon-1">Sezon I</router-link>
     </div>
     <div class="cta">
       <div class="discord">

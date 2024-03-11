@@ -2,24 +2,16 @@ import {createApp} from 'vue'
 import App from './App.vue'
 import Home from "@/components/Home.vue";
 import {createRouter, createWebHashHistory} from "vue-router";
-import Rules from "@/components/Rules.vue";
-import Tracks from "@/components/Tracks.vue";
-import Rewards from "@/components/Rewards.vue";
-import Standings from "@/components/Standings.vue";
 import Weather from "@/components/Weather.vue";
-import Finale from "@/components/Finale.vue";
-import FinaleStandings from "@/components/FinaleStandings.vue";
 
+import Season1 from "@/components/Season1.vue";
+import ComboRandomizer from "@/components/ComboRandomizer.vue";
 
 const routes = [
   {path: '/', component: Home},
-  {path: '/zasady', component: Rules},
-  {path: '/tory', component: Tracks},
-  {path: '/nagrody', component: Rewards},
-  {path: '/klasyfikacja', component: Standings},
+  {path: '/kombo', component: ComboRandomizer},
   {path: '/pogoda', component: Weather},
-  {path: '/final', component: Finale},
-  {path: '/wyniki', component: FinaleStandings}
+  {path: '/sezon-1', component: Season1}
 ]
 
 const router = createRouter({
