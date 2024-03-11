@@ -159,7 +159,6 @@ export default {
           }).filter(track => {
             return track.slow || track.mid || track.fast;
           })
-          list.shift()
           return list
         })
       ]);
