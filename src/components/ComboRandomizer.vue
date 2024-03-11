@@ -156,6 +156,8 @@ export default {
               mid: stringToBoolean(columns[3]),
               fast: stringToBoolean(columns[4]),
             }
+          }).filter(track => {
+            return track.slow || track.mid || track.fast;
           })
           list.shift()
           return list
