@@ -61,7 +61,7 @@ export default {
   data: () => {
     return {
       minPP: 100,
-      maxPPSlow: 400,
+      maxPPSlow: 426,
       maxPPMid: 550,
       maxPP: 800,
       maxPrice: 1000000,
