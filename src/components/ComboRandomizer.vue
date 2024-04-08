@@ -62,9 +62,9 @@ export default {
     return {
       minPP: 100,
       maxPPSlow: 426,
-      maxPPMid: 550,
+      maxPPMid: 543,
       maxPP: 800,
-      maxPrice: 1000000,
+      maxPrice: 3600000,
       groupN: [],
       groupB: [],
       group1: [],
