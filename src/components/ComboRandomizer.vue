@@ -292,10 +292,10 @@ export default {
 
     const data = JSON.parse(await usedCars.text())
     const used = data.used.cars
-        .filter(entry => entry.state === 'normal')
+        .filter(entry => entry.state === 'normal' || entry.state === 'limited')
         .map(mapGTInfoCarEntry)
     const legends = data.legend.cars
-        .filter(entry => entry.state === 'normal')
+        .filter(entry => entry.state === 'normal' || entry.state === 'limited')
         .map(mapGTInfoCarEntry)
     used.forEach(car => this.addToGroups(car, TYPE_USED));
     legends.forEach(car => this.addToGroups(car, TYPE_LEGEND));
