@@ -24,6 +24,15 @@
           <p>
             Max Cena: <input type="range" v-model.number="maxPrice" min="50000" max="20000000" /><input readonly type="number" v-model="maxPrice" />
           </p>
+          <p>
+            Szansa na legendy <input type="range" v-model.number="legendChance" min="0" max="100" @change="fixChances('legend')" /><input readonly type="number" v-model="legendChance" />
+          </p>
+          <p>
+            Szansa na używane <input type="range" v-model.number="usedChance" min="0" max="100" @change="fixChances('used')" /><input readonly type="number" v-model="usedChance" />
+          </p>
+          <p>
+            Szansa na nowe <input readonly type="number" v-model="newChance" />
+          </p>
         </div>
       </div>
     </div>
@@ -40,6 +49,10 @@ const groupByCarId = new Map(groupRawData);
 const dailyCarsAvailabilityUrl = 'https://ddm999.github.io/gt7info/data.json'
 const newCarsDataUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR7pQ8wqigp_8iTrCde1_xgPnqJkWnMY6Rg8Rp0c_ff68uWrTEy33Et9sZZYacjybEDWffztqOS4lWH/pub?gid=0&single=true&output=csv'
 const trackDataUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR7pQ8wqigp_8iTrCde1_xgPnqJkWnMY6Rg8Rp0c_ff68uWrTEy33Et9sZZYacjybEDWffztqOS4lWH/pub?gid=955460338&single=true&output=csv'
+
+const TYPE_NEW = 'new';
+const TYPE_LEGEND = 'legend';
+const TYPE_USED = 'used';
 
 const mapGTInfoCarEntry = (entry) => {
   const group = groupByCarId.get(entry.carid);
@@ -65,12 +78,39 @@ export default {
       maxPPMid: 545,
       maxPP: 800,
       maxPrice: 3600000,
-      groupN: [],
-      groupB: [],
-      group1: [],
-      group2: [],
-      group3: [],
-      group4: [],
+      legendChance: 30,
+      usedChance: 30,
+      newChance: 40,
+      groupN: {
+        [TYPE_LEGEND]: [],
+        [TYPE_NEW]: [],
+        [TYPE_USED]: []
+      },
+      groupB: {
+        [TYPE_LEGEND]: [],
+        [TYPE_NEW]: [],
+        [TYPE_USED]: []
+      },
+      group1: {
+        [TYPE_LEGEND]: [],
+        [TYPE_NEW]: [],
+        [TYPE_USED]: []
+      },
+      group2: {
+        [TYPE_LEGEND]: [],
+        [TYPE_NEW]: [],
+        [TYPE_USED]: []
+      },
+      group3: {
+        [TYPE_LEGEND]: [],
+        [TYPE_NEW]: [],
+        [TYPE_USED]: []
+      },
+      group4: {
+        [TYPE_LEGEND]: [],
+        [TYPE_NEW]: [],
+        [TYPE_USED]: []
+      },
       showConfig: false,
       tracks: [],
       currentTrack: null,
@@ -111,14 +151,54 @@ export default {
       if(this.currentTrack.fast) {
         maxPP = this.maxPP
       }
-      const filtered = this.groupN.filter(car => {
-        return car.pp >= minPP && car.pp <= maxPP && car.price <= this.maxPrice
+      const filtered = {};
+      const randomized = {};
+      [TYPE_NEW, TYPE_USED, TYPE_LEGEND].forEach(type => {
+        filtered[type] = this.groupN[type].filter(car => {
+          return car.pp >= minPP && car.pp <= maxPP && car.price <= this.maxPrice
+        })
+        if (filtered[type].length === 0) {
+          randomized[type] = undefined
+        } else if (filtered[type].length === 1) {
+          randomized[type] = filtered[type][0]
+        } else {
+          const carIndex = Math.floor(Math.random()*filtered[type].length)
+          randomized[type] = filtered[type][carIndex]
+        }
+
       })
-      const carIndex = Math.floor(Math.random()*filtered.length)
-      this.currentCar = filtered[carIndex]
+
+      switch (true) {
+        case !randomized[TYPE_LEGEND] && !randomized[TYPE_USED]:
+          this.currentCar = randomized[TYPE_NEW];
+          break;
+        case !randomized[TYPE_LEGEND]:
+          this.currentCar = randomized[this.determineUsedAndNew()];
+          break;
+        case !randomized[TYPE_USED]:
+          this.currentCar = randomized[this.determineLegendAndNew()];
+          break;
+        default:
+          this.currentCar = randomized[this.determineType()];
+          break;
+      }
     },
     toggleConfig() {
       this.showConfig = !this.showConfig
+    },
+    fixChances: function (priority) {
+      this.newChance = 100 - this.usedChance - this.legendChance;
+      if (this.newChance < 0) {
+        this.newChance = 0;
+      }
+      if (this.usedChance + this.legendChance <= 100) {
+        return
+      }
+      if (priority === 'used') {
+        this.legendChance = 100 - this.usedChance;
+      } else {
+        this.usedChance = 100 - this.legendChance;
+      }
     },
     fixPPs: function () {
       if(this.maxPPSlow < this.minPP) {
@@ -129,6 +209,52 @@ export default {
       }
       if(this.maxPP < this.maxPPMid) {
         this.maxPP = this.maxPPMid + 1
+      }
+    },
+    determineLegendAndNew() {
+      const r = Math.floor(Math.random() * this.legendChance + this.newChance);
+      if (r < this.legendChance) {
+        return TYPE_LEGEND;
+      }
+      return TYPE_NEW;
+    },
+    determineUsedAndNew() {
+      const r = Math.floor(Math.random() * this.usedChance + this.newChance);
+      if (r < this.usedChance) {
+        return TYPE_USED;
+      }
+      return TYPE_NEW;
+    },
+    determineType() {
+      const r = Math.floor(Math.random() * 100);
+      if (r < this.legendChance) {
+        return TYPE_LEGEND;
+      }
+      if (r < this.legendChance + this.usedChance) {
+        return TYPE_USED;
+      }
+      return TYPE_NEW;
+    },
+    addToGroups( car, type) {
+      switch (car.group) {
+        case 'N':
+          this.groupN[type].push(car)
+          break
+        case '1':
+          this.group1[type].push(car)
+          break
+        case '2':
+          this.group2[type].push(car)
+          break
+        case '3':
+          this.group3[type].push(car)
+          break
+        case '4':
+          this.group4[type].push(car)
+          break
+        case 'B':
+          this.groupB[type].push(car)
+          break
       }
     }
   },
@@ -171,34 +297,13 @@ export default {
     const legends = data.legend.cars
         .filter(entry => entry.state === 'normal')
         .map(mapGTInfoCarEntry)
-    const fullList = newCars.concat(used, legends)
-    fullList.forEach(car => {
-      switch (car.group) {
-        case 'N':
-          this.groupN.push(car)
-              break
-        case '1':
-          this.group1.push(car)
-          break
-        case '2':
-          this.group2.push(car)
-          break
-        case '3':
-          this.group3.push(car)
-          break
-        case '4':
-          this.group4.push(car)
-          break
-        case 'B':
-          this.groupB.push(car)
-          break
-      }
-    })
+    used.forEach(car => this.addToGroups(car, TYPE_USED));
+    legends.forEach(car => this.addToGroups(car, TYPE_LEGEND));
+    newCars.forEach(car => this.addToGroups(car, TYPE_NEW));
     this.loading = false;
     this.randomize();
   }
 }
-
 </script>
 
 <style scoped>
